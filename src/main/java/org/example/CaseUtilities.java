@@ -44,7 +44,7 @@ class CaseUtilities {
         str = str.toLowerCase();
         final int strLen = str.length();
         final int[] newCodePoints = new int[strLen]; // stringa finale trattata come array di codepoints
-        int outOffset = 0; // indice della nuova stringa
+        int outOffset = 0; // contatore dei caratteri della nuova stringa
         final Set<Integer> delimiterSet = generateDelimiterSet(delimiters); // alla peggio il set contiene solo lo spazio, altrimenti anche quelli indicati come parametri, i caratteri sono sempre trattati come code points
         boolean capitalizeNext = false;
         if (capitalizeFirstLetter) {
@@ -79,7 +79,7 @@ class CaseUtilities {
 
                 // se non è separatore e NON devo rendere maiuscolo faccio questo blocco e riparto
                 else {
-                    newCodePoints[outOffset++] = codePoint; // non capisco perchè se è maiuscolo trasforma in minuscolo (giustamente per carità)
+                    newCodePoints[outOffset++] = codePoint;
                     index += Character.charCount(codePoint);
                 } // ----------------------------------------------------------
 

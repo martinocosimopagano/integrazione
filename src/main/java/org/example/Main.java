@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         CaseUtilities c = new CaseUtilities();
         System.out.println("ecco il risultato:  ");
-        System.out.println(c.toCamelCase("aas weweSis awe ", false, '-', '.'));
+        System.out.println(c.toCamelCase(" 1 -- 1", false, '-', '1'));
     }
 
     int fibonacci(int n){
