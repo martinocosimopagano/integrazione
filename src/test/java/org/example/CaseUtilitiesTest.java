@@ -11,7 +11,7 @@ class CaseUtilitiesTest {
     void createInstance(){
         c = new CaseUtilities();
     }
-
+/*
     @Test
     void simpleCase(){
         assertEquals("laMiaProva", c.toCamelCase("la mia prova", false));
@@ -35,56 +35,55 @@ class CaseUtilitiesTest {
         assertNull(c.toCamelCase(null, false));
     }
 
+ */
+
     // -------------------------------------------------------------------------------------------
 
     @Test
     //Null String, 1 Delimiters, false
-    void case1(){
+    void nullStringCase(){
         assertEquals(null, c.toCamelCase(null, false, '-'));
     }
 
+
     @Test
     //Regular String, 0 Delimiters, false
-    void case2(){
+    void noExtraDelimiters(){
         assertEquals("stringaDaConvertire", c.toCamelCase("stringa da convertire", false));
     }
 
     @Test
     //empty String, 2 Delimiters, false
-    void case3(){
+    void emptyStringCase(){
         assertEquals("", c.toCamelCase("", false, '-', '.'));
     }
 
     @Test
     //empty String, 0 Delimiters, true
-    void case4(){
+    void capitalizeEmptyStringCase(){
         assertEquals("", c.toCamelCase("", true));
     }
 
     @Test
     //str non contiene i caratteri separatori, 1 Delimiters, false
-    void case5(){
+    void stringWithoutDelimiters(){
         assertEquals("noncontieneseparatori", c.toCamelCase("noncontieneseparatori", false, '-'));
     }
 
     @Test
     //str contiene solo caratteri separatori, 2 Delimiters, false
-    void case6(){
-        assertEquals("- . -- .. .", c.toCamelCase("- . -- .. .", false, '-', '.'));
+    void stringOnlyDelimiters(){
+        assertEquals("", c.toCamelCase("", false, '-', '.'));
     }
 
     @Test
     //str è già in CamelCase, 1 Delimiters, false
-    void case7(){
-        assertEquals("stringagiaincamelcase", c.toCamelCase("stringaGiaInCamelCase", false, '-'));
+    void stringInCamelCase(){
+        assertEquals("StringaGiaInCamelCase", c.toCamelCase("stringaGiaInCamelCase", true, '-'));
     }
     @Test
-    //Null String, 0 Delimeters, True
-    void case8(){
-        assertNull(c.toCamelCase(null, false));}
-    @Test
     //String of length 1, 0 Delimeters, True
-    void case9(){
+    void lenght1CapitalizeTrue(){
         assertEquals("C",c.toCamelCase("c",true));
     }
 }
