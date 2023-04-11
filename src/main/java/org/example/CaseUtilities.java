@@ -54,8 +54,6 @@ class CaseUtilities {
         // inizio il processo: scansione lettera per lettera
         for (int index = 0; index < strLen;) {
                 final int codePoint = str.codePointAt(index); // estraggo il codepoint del carattere da considerare
-
-
                 // se è un separatore faccio questo blocco e riparto con il for
                 if (delimiterSet.contains(codePoint)) {
                     capitalizeNext = true;
@@ -64,9 +62,6 @@ class CaseUtilities {
                     }
                     index += Character.charCount(codePoint); // Questo metodo restituirà 1 per i codepoint che possono essere rappresentati da un singolo char e 2 per i codepoint che richiedono una coppia surrogata.
                 } // ----------------------------------------------------------
-
-
-
                 // se non è separatore e devo rendere maiuscolo faccio questo blocco e riparto
                 else if (capitalizeNext) {
                     final int titleCaseCodePoint = Character.toTitleCase(codePoint);
