@@ -73,7 +73,7 @@ class CaseUtilitiesTest {
     @Test
     //str contiene solo caratteri separatori, 2 Delimiters, false
     void stringOnlyDelimiters(){
-        assertEquals("", c.toCamelCase("", false, '-', '.'));
+        assertEquals("", c.toCamelCase("-- . -.", false, '-', '.'));
     }
 
     @Test
@@ -85,6 +85,11 @@ class CaseUtilitiesTest {
     //String of length 1, 0 Delimeters, True
     void lenght1CapitalizeTrue(){
         assertEquals("C",c.toCamelCase("c",true));
+    }
+    @Test
+        //String of length > 1, 1 Delimeters, True
+    void lenghtMajor1CapitalizeTrue(){
+        assertEquals("ConvertiQuestaStringa",c.toCamelCase("converti-questa-stringa",true,'-'));
     }
 }
 
