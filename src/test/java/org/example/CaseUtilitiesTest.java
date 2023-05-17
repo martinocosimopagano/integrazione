@@ -53,59 +53,79 @@ class CaseUtilitiesTest {
     }
 
     @Test
-    //empty String, 2 Delimiters, false
-    void emptyStringCase(){
-        assertEquals("", c.toCamelCase("", false, '-', '.'));
-    }
-
-    @Test
-    //empty String, 0 Delimiters, true
-    void capitalizeEmptyStringCase(){
-        assertEquals("", c.toCamelCase("", true));
-    }
-
-    @Test
-    //str non contiene i caratteri separatori, 1 Delimiters, false
-    void stringWithoutDelimiters(){
-        assertEquals("noncontieneseparatori", c.toCamelCase("noncontieneseparatori", false, '-'));
-    }
-
-    @Test
-    //str contiene solo caratteri separatori, 2 Delimiters, false
-    void stringOnlyDelimiters(){
-        assertEquals("", c.toCamelCase("-- . -.", false, '-', '.'));
-    }
-
-
-    @Test
-    //String of length 1, 0 Delimeters, True
-    void lenght1CapitalizeTrue(){
-        assertEquals("C",c.toCamelCase("c",true));
-    }
-    @Test
         //String of length > 1, 1 Delimeters, True
     void lenghtMajor1CapitalizeTrue(){
         assertEquals("ConvertiQuestaStringa",c.toCamelCase("converti-questa-stringa",true,'-'));
     }
+
+    @Test
+    //empty String, 0 Delimiters, false
+    void emptyStringCase(){
+        assertEquals("", c.toCamelCase("", false));
+    }
+
+    @Test
+    void manyDelimiters(){assertEquals("convertiQuestaStringa",c.toCamelCase("converti-questa.stringa",false,'-','.'));}
+
+    @Test
+        //String of length 1, 0 Delimeters, True
+    void lenght1CapitalizeTrue(){
+        assertEquals("C",c.toCamelCase("c",true));
+    }
+
     @Test
         //str è già in CamelCase, 1 Delimiters, false
     void stringInCamelCase(){
-        assertEquals("StringaGiaInCamelCase", c.toCamelCase("stringaGiaInCamelCase", true, '-'));
+        assertEquals("stringagiaincamelcase", c.toCamelCase("stringaGiaInCamelCase", false, '-'));
     }
+
     @Test
         //carattere speciale(non avente maiuscola) dopo separatore
     void specialCharacterAfterDelimiters(){
         assertEquals("prova-stringa", c.toCamelCase("prova -stringa", false));
     }
-   @Test
-    //carattere speciale come prima lettera con capitalizeFirstLetter
-    void specialCharacterIsFirst(){
+
+    @Test
+        //carattere speciale come prima lettera con capitalizeFirstLetter
+    void specialCharacterIsFirstWithCapitalize(){
         assertEquals("-prova-stringa", c.toCamelCase("-prova -stringa", true));
     }
     @Test
-    void unconventionalCharaters(){
-       assertThrows(Exception.class,()-> c.toCamelCase("مرحباً جميعاً", false));
+    void unconventionalCharacters(){
+        assertEquals("مرحباًجميعاً", c.toCamelCase("مرحباً جميعاً", false,'-'));
     }
+
+    @Test
+        //empty String, 0 Delimiters, true
+    void capitalizeEmptyStringCase(){
+        assertEquals("", c.toCamelCase("", true));
+    }
+
+    @Test
+        //str non contiene i caratteri separatori, 1 Delimiters, false
+    void stringWithoutDelimiters(){
+        assertEquals("noncontieneseparatori", c.toCamelCase("noncontieneseparatori", false, '-'));
+    }
+
+
+    @Test
+        //str contiene solo caratteri separatori, 2 Delimiters, false
+    void stringOnlyDelimiters(){
+        assertEquals("", c.toCamelCase("-- . -.", false, '-', '.'));
+    }
+
+    @Test
+    void lessCharactersThenDelimiters(){assertEquals("up",c.toCamelCase("up",false,'-','.',',','['));}
+
+    @Test
+    void startDelimiters(){assertEquals("ciao",c.toCamelCase("-ciao",false,'-'));}
+
+
+
+
+
+
+
 }
 
 

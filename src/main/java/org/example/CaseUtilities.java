@@ -84,7 +84,9 @@ class CaseUtilities {
         if (outOffset != 0) {
             return new String(newCodePoints, 0, outOffset);
         }
-        return str; // se non ci sono caratteri non separatori nella stringa restituisce esattamente la stringa iniziale. perchè questa scelta?
+
+
+        return ""; // se non ci sono caratteri non separatori nella stringa restituisce esattamente la stringa iniziale. perchè questa scelta?
     }
 
     /**
