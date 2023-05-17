@@ -3,6 +3,7 @@ package org.example;
 import net.jqwik.api.*;
 import net.jqwik.api.constraints.IntRange;
 import net.jqwik.api.constraints.Size;
+import net.jqwik.api.statistics.StatisticsReport;
 
 import java.util.List;
 
@@ -11,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class MaxFinderTest {
     MaxFinder maxFinder = new MaxFinder();
 
-   @Property
+   @Property(generation = GenerationMode.RANDOMIZED)
    @Report(Reporting.GENERATED)
-    void pass(@ForAll @Size(value=100) List<@IntRange(min = -1000, max = 1000) Integer> numbers,
-              @ForAll @IntRange(min = 1001, max = 2000) int value,
+    void pass(@ForAll @Size(value = 100) List<@IntRange(min = -1000, max = 1000) Integer> numbers,
+              @ForAll @IntRange(min = 1001) int value,
               @ForAll @IntRange(max = 99) int indexToAddElement){
        numbers.add(indexToAddElement,value);
-       assertEquals(value, maxFinder.trovaIndiceUnicoMassimo(numbers));
+       assertEquals(indexToAddElement, maxFinder.trovaIndiceUnicoMassimo(numbers));
    }
 
     @Property
